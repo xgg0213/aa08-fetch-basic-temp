@@ -7,14 +7,38 @@ Paste your code for fetch requests here once you finish each task.
 
 // Your code here 
 async function makeGetFetch() {
-    const res = await fetch("http://localhost:5000/products");
+    const res = await fetch("http://localhost:8000/products");
     console.log("Response status code: ", res.status);
     console.log("Response success boolean: ", res.ok);
     console.log("Response Content-Type Header: ", res.headers.get("Content-Type"));
     console.log("Response Body: ", await res.text())
     // everytime a promise need to use await within async function
 }
-makeGetFetch();
+// makeGetFetch();
+
+// post has body and header, while get does not
+async function makePostFetch() {
+    const res = await fetch("http://localhost:8000/products",  {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "name=test&description=test&price=1&categories=grocery"
+        // body: {
+        //     name:"test" ,
+        //     description: "test" ,
+        //     price: 1,
+        //     category: "test"
+        // }
+    });
+    console.log("Response status code: ", res.status);
+    console.log("Response success boolean: ", res.ok);
+    console.log("Response Content-Type Header: ", res.headers.get("Content-Type"));
+    console.log("Response Body: ", await res.text())
+    // everytime a promise need to use await within async function
+}
+
+makePostFetch()
 
 /* ====== 2. Print true if the status of the response was successful ====== */
 
